@@ -1,6 +1,6 @@
 {
   "name": "@zakodium/utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "private": false,
   "description": "Small utilities by zakodium for zakodium",
@@ -46,6 +46,5 @@
   "bugs": {
     "url": "https://github.com/@zakodium/utils/issues"
   },
-  "homepage": "https://github.com/@zakodium/utils#readme",
-  "license": "MIT"
+  "homepage": "https://github.com/@zakodium/utils#readme"
 }
