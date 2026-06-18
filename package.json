@@ -1,0 +1,50 @@
+{
+  "name": "@zakodium/utils",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": false,
+  "description": "Small utilities by zakodium for zakodium",
+  "keywords": [],
+  "author": "tpoisseau",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf coverage lib",
+    "eslint": "eslint .",
+    "eslint-fix": "eslint . --fix",
+    "prepack": "npm run tsc",
+    "prettier": "prettier --check .",
+    "prettier-write": "prettier --write .",
+    "test": "npm run test-only && npm run check-types && npm run eslint && npm run prettier",
+    "test-only": "vitest run --coverage",
+    "tsc": "npm run clean && npm run tsc-build",
+    "tsc-build": "tsc --project tsconfig.build.json"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "@vitest/coverage-v8": "^4.1.9",
+    "@zakodium/tsconfig": "^1.0.5",
+    "eslint": "^9.39.1",
+    "eslint-config-cheminfo-typescript": "^22.1.0",
+    "prettier": "^3.8.4",
+    "rimraf": "^6.1.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/@zakodium/utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/@zakodium/utils/issues"
+  },
+  "homepage": "https://github.com/@zakodium/utils#readme"
+}
