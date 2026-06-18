@@ -27,6 +27,8 @@ assertDefinedNotNull(value); // throws if value is null or undefined
 
 ## List of utilities
 
+- [API Reference](https://zakodium.github.io/utils/)
+
 ### Assertions
 
 With types mutations.
