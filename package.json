@@ -46,5 +46,6 @@
   "bugs": {
     "url": "https://github.com/@zakodium/utils/issues"
   },
-  "homepage": "https://github.com/@zakodium/utils#readme"
+  "homepage": "https://github.com/@zakodium/utils#readme",
+  "license": "MIT"
 }

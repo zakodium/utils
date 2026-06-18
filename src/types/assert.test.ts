@@ -5,7 +5,7 @@ import {
   assertDefined,
   assertDefinedNotNull,
   assertUnreachable,
-} from '../index.ts';
+} from './assert.ts';
 
 type Value = object | boolean | null | undefined;
 

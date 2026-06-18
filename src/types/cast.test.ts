@@ -1,6 +1,6 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 
-import { cast, is } from '../index.ts';
+import { cast, is } from './cast.ts';
 
 interface BaseEntity {
   type: string;
