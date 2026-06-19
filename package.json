@@ -41,10 +41,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/@zakodium/utils.git"
+    "url": "git+https://github.com/zakodium/utils.git"
   },
   "bugs": {
-    "url": "https://github.com/@zakodium/utils/issues"
+    "url": "https://github.com/zakodium/utils/issues"
   },
-  "homepage": "https://github.com/@zakodium/utils#readme"
+  "homepage": "https://github.com/zakodium/utils#readme-ov-file"
 }

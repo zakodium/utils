@@ -2,8 +2,8 @@
 
 [![NPM version](https://img.shields.io/npm/v/@zakodium/utils.svg)](https://www.npmjs.com/package/@zakodium/utils)
 [![npm download](https://img.shields.io/npm/dm/@zakodium/utils.svg)](https://www.npmjs.com/package/@zakodium/utils)
-[![test coverage](https://img.shields.io/codecov/c/github/@zakodium/utils.svg)](https://codecov.io/gh/@zakodium/utils)
-[![license](https://img.shields.io/npm/l/@zakodium/utils.svg)](https://github.com/@zakodium/utils/blob/main/LICENSE)
+[![test coverage](https://img.shields.io/codecov/c/github/zakodium/utils.svg)](https://app.codecov.io/gh/zakodium/utils)
+[![license](https://img.shields.io/github/license/zakodium/utils.svg)](https://github.com/zakodium/utils/blob/main/LICENSE)
 
 Small utilities by zakodium for zakodium.
 
@@ -28,20 +28,6 @@ assertDefinedNotNull(value); // throws if value is null or undefined
 ## List of utilities
 
 - [API Reference](https://zakodium.github.io/utils/)
-
-### Assertions
-
-With types mutations.
-
-- `function assert(value: unknown, message?: string | (() => string)): asserts value;`
-- `function assertUnreachable(value: never): never;`
-- `function assertDefined<T>(value: T): asserts value is Exclude<T, undefined>;`
-- `function assertDefinedNotNull<T>(value: T): asserts value is Exclude<T, null | undefined>;`
-
-### Casting
-
-- `function is<Output>(value: unknown, condition: boolean): value is Output;`
-- `function cast<Output>(value: unknown): asserts value is Output;`
 
 ## Features that could be added later
 
