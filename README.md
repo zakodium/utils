@@ -2,8 +2,8 @@
 
 [![NPM version](https://img.shields.io/npm/v/@zakodium/utils.svg)](https://www.npmjs.com/package/@zakodium/utils)
 [![npm download](https://img.shields.io/npm/dm/@zakodium/utils.svg)](https://www.npmjs.com/package/@zakodium/utils)
-[![test coverage](https://img.shields.io/codecov/c/github/@zakodium/utils.svg)](https://codecov.io/gh/@zakodium/utils)
-[![license](https://img.shields.io/npm/l/@zakodium/utils.svg)](https://github.com/@zakodium/utils/blob/main/LICENSE)
+[![test coverage](https://img.shields.io/codecov/c/github/zakodium/utils.svg)](https://app.codecov.io/gh/zakodium/utils)
+[![license](https://img.shields.io/github/license/zakodium/utils.svg)](https://github.com/zakodium/utils/blob/main/LICENSE)
 
 Small utilities by zakodium for zakodium.
 
