@@ -29,20 +29,6 @@ assertDefinedNotNull(value); // throws if value is null or undefined
 
 - [API Reference](https://zakodium.github.io/utils/)
 
-### Assertions
-
-With types mutations.
-
-- `function assert(value: unknown, message?: string | (() => string)): asserts value;`
-- `function assertUnreachable(value: never): never;`
-- `function assertDefined<T>(value: T): asserts value is Exclude<T, undefined>;`
-- `function assertDefinedNotNull<T>(value: T): asserts value is Exclude<T, null | undefined>;`
-
-### Casting
-
-- `function is<Output>(value: unknown, condition: boolean): value is Output;`
-- `function cast<Output>(value: unknown): asserts value is Output;`
-
 ## Features that could be added later
 
 - Iterable helpers like `map`, `filter` and so on.
