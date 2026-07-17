@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/zakodium/utils/compare/v0.2.0...v0.3.0) (2026-07-17)
+
+
+### Features
+
+* add some type utilities ([f107355](https://github.com/zakodium/utils/commit/f107355fe6b3984c9da0d506b5cd84fb02261003))
+
 ## [0.2.0](https://github.com/zakodium/utils/compare/v0.1.0...v0.2.0) (2026-06-19)
 
 
