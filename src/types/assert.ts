@@ -1,3 +1,5 @@
+import type { Falsy, Nullish } from './types.ts';
+
 /**
  * Basic assertion with (a possible lazy) message.
  * Pay attention, it will throw an error if the value is falsy, even for 0, false, and empty strings.
@@ -5,10 +7,10 @@
  * @param value
  * @param message
  */
-export function assert(
-  value: unknown,
+export function assert<T>(
+  value: T,
   message: string | (() => string) = `value ${String(value)} is falsy`,
-): asserts value {
+): asserts value is Exclude<T, Falsy> {
   if (!value) {
     const finalMessage = typeof message === 'function' ? message() : message;
     throw new Error(finalMessage);
@@ -65,7 +67,7 @@ export function assertDefined<T>(
 }
 
 /**
- * Ensures that the given value is not null or undefined.
+ * Ensures that the given value is not nullish.
  * @param value
  * @example React Ref
  * ```ts
@@ -73,7 +75,7 @@ export function assertDefined<T>(
  *  const ref = useRef<HTMLSpanElement>(null);
  *  function onClick() {
  *    const span = ref.current;
- *    assertDefinedNotNull(span);
+ *    assertNotNullish(span);
  *    span.textContent = 'Hello world!';
  *  }
  *
@@ -87,11 +89,21 @@ export function assertDefined<T>(
  *
  * ```
  */
-export function assertDefinedNotNull<T>(
+export function assertNotNullish<T>(
   value: T,
-): asserts value is Exclude<T, null | undefined> {
+): asserts value is Exclude<T, Nullish> {
   // catch null and undefined
   if (value == null) {
     throw new Error(`unexpected ${String(value)} value`);
   }
+}
+
+/**
+ * @param value
+ * @deprecated Use `assertNotNullish` instead.
+ */
+export function assertDefinedNotNull<T>(
+  value: T,
+): asserts value is Exclude<T, Nullish> {
+  assertNotNullish(value);
 }

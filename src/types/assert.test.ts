@@ -4,6 +4,7 @@ import {
   assert as internalAssert,
   assertDefined,
   assertDefinedNotNull,
+  assertNotNullish,
   assertUnreachable,
 } from './assert.ts';
 
@@ -81,30 +82,37 @@ describe('assertDefined', () => {
   });
 });
 
-describe('assertDefinedNotNull', () => {
+describe('assertNotNullish', () => {
   const record: Record<string, string | null> = {
     foo: 'bar',
     empty: '',
     null: null,
   };
 
-  it('should assertDefinedNotNull foo', () => {
+  it('should assertNotNullish foo', () => {
     const foo = record.foo;
-    assertDefinedNotNull(foo);
+    assertNotNullish(foo);
 
     expectTypeOf(foo).toEqualTypeOf<string>();
   });
 
-  it('should assertDefinedNotNull empty', () => {
+  it('should assertNotNullish empty', () => {
     const empty = record.empty;
-    assertDefinedNotNull(empty);
+    assertNotNullish(empty);
 
     expectTypeOf(empty).toEqualTypeOf<string>();
+  });
+
+  it('should assertNotNullish throw on null', () => {
+    const value = record.null;
+
+    expect(() => assertNotNullish(value)).toThrow('unexpected null value');
   });
 
   it('should assertDefinedNotNull throw on null', () => {
     const value = record.null;
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     expect(() => assertDefinedNotNull(value)).toThrow('unexpected null value');
   });
 });

@@ -16,13 +16,14 @@ npm install @zakodium/utils
 ## Usage
 
 ```js
-import { assertDefinedNotNull } from '@zakodium/utils';
+import { assertNotNullish } from '@zakodium/utils';
 
-const value: object | string | boolean | number | null | undefined = JSON.parse(someJsonString);
+const value: object | string | number | boolean | null | undefined = JSON.parse(someJsonString);
 
-assertDefinedNotNull(value); // throws if value is null or undefined
+assertNotNullish(value); // throws if value is null or undefined
 
-// value type is object | string | boolean | number
+value;
+// value type is object | string | number | boolean
 ```
 
 ## List of utilities
@@ -37,6 +38,11 @@ assertDefinedNotNull(value); // throws if value is null or undefined
 - functional helpers like `pipe` and so on.
   Could be useful until the pipe operator is not available.
   https://github.com/tc39/proposal-pipeline-operator
+
+## TypeScript types
+
+[Total TypeScript](https://www.totaltypescript.com/) from [Matt Pocock](https://github.com/mattpocock)
+is a great inspiration for type utilities exported by this package.
 
 ## License
 
