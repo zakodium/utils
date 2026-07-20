@@ -4,6 +4,7 @@ import {
   assert as internalAssert,
   assertDefined,
   assertDefinedNotNull,
+  assertIn,
   assertNotNullish,
   assertUnreachable,
 } from './assert.ts';
@@ -201,5 +202,41 @@ describe('assertUnreachable', () => {
           assertUnreachable(value);
       }
     }).toThrow('unreachable: z');
+  });
+});
+
+type Unit = 'ppm' | 'hz' | 'pt' | 's';
+const fidUnits = ['pt', 's'] as const satisfies Unit[];
+const ftUnits = ['pt', 'ppm', 'hz'] as const satisfies Unit[];
+
+function getFidUnit(unit: (typeof fidUnits)[number]): Unit {
+  return unit;
+}
+
+function getFtUnit(unit: (typeof ftUnits)[number]): Unit {
+  return unit;
+}
+
+describe('should assertIn', () => {
+  it('fid', () => {
+    const fidUnit = getFidUnit('pt');
+    assertIn(fidUnit, fidUnits);
+
+    expectTypeOf(fidUnit).toEqualTypeOf<'pt' | 's'>();
+
+    expect(() => assertIn('hz', fidUnits)).toThrow(
+      `Value hz is not in [${fidUnits.join(',')}]`,
+    );
+  });
+
+  it('ft', () => {
+    const ftUnit = getFtUnit('pt');
+    assertIn(ftUnit, ftUnits);
+
+    expectTypeOf(ftUnit).toEqualTypeOf<'pt' | 'ppm' | 'hz'>();
+
+    expect(() => assertIn('s', ftUnits)).toThrow(
+      `Value s is not in [${ftUnits.join(',')}]`,
+    );
   });
 });
