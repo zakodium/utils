@@ -7,6 +7,7 @@ import {
   assertNotNullish,
   assertUnreachable,
 } from './assert.ts';
+import type { Nullish } from './types.ts';
 
 type Value = object | boolean | null | undefined;
 
@@ -52,6 +53,51 @@ describe('assert', () => {
         'Should not be falsy',
       );
     }
+  });
+});
+
+describe('assert implicit', () => {
+  it('should assert object properties', () => {
+    interface Foo {
+      foo: string;
+      bar?: number | Nullish;
+      baz?: string | Nullish;
+    }
+
+    const fooOptional: Foo = {
+      foo: 'foo',
+    };
+
+    const fooRequired: Foo = {
+      foo: 'foo',
+      bar: 1,
+      baz: 'baz',
+    };
+
+    internalAssert(fooRequired.bar && fooRequired.baz);
+
+    expectTypeOf(fooRequired.bar).toEqualTypeOf<number>();
+    expectTypeOf(fooRequired.baz).toEqualTypeOf<string>();
+
+    expect(() =>
+      internalAssert(
+        fooOptional.bar && fooOptional.baz,
+        'bar and baz should be defined',
+      ),
+    ).toThrow('bar and baz should be defined');
+  });
+
+  it('should assert discriminated union', () => {
+    type Foo = { type: 'foo'; foo: string } | { type: 'bar'; bar: number };
+
+    const foo: Foo = { type: 'foo', foo: 'foo' };
+    const bar: Foo = { type: 'bar', bar: 1 };
+
+    internalAssert(foo.type === 'foo');
+    internalAssert(bar.type === 'bar');
+
+    expectTypeOf(foo).toEqualTypeOf<{ type: 'foo'; foo: string }>();
+    expectTypeOf(bar).toEqualTypeOf<{ type: 'bar'; bar: number }>();
   });
 });
 

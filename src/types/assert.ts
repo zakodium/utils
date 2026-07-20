@@ -1,4 +1,4 @@
-import type { Falsy, Nullish } from './types.ts';
+import type { Nullish } from './types.ts';
 
 /**
  * Basic assertion with (a possible lazy) message.
@@ -7,10 +7,10 @@ import type { Falsy, Nullish } from './types.ts';
  * @param value
  * @param message
  */
-export function assert<T>(
-  value: T,
+export function assert(
+  value: unknown,
   message: string | (() => string) = `value ${String(value)} is falsy`,
-): asserts value is Exclude<T, Falsy> {
+): asserts value {
   if (!value) {
     const finalMessage = typeof message === 'function' ? message() : message;
     throw new Error(finalMessage);
