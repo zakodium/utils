@@ -1,4 +1,6 @@
 /**
  * No operation function.
  */
-export function noop() {}
+export function noop() {
+  // no operation
+}
