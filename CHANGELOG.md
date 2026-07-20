@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/zakodium/utils/compare/v0.4.0...v0.4.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* restore `assert` method with implicit inference ([#13](https://github.com/zakodium/utils/issues/13)) ([be74eac](https://github.com/zakodium/utils/commit/be74eacc9c622d0353db5644e0cb7b51599e3b9d))
+
 ## [0.4.0](https://github.com/zakodium/utils/compare/v0.3.0...v0.4.0) (2026-07-20)
 
 
