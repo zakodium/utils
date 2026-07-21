@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/zakodium/utils/compare/v0.4.1...v0.5.0) (2026-07-21)
+
+
+### Features
+
+* add `assertIn` with value narrowing ([#15](https://github.com/zakodium/utils/issues/15)) ([260cba8](https://github.com/zakodium/utils/commit/260cba8ad956755b86f11f420775ee5eb8056bff))
+
 ## [0.4.1](https://github.com/zakodium/utils/compare/v0.4.0...v0.4.1) (2026-07-20)
 
 
