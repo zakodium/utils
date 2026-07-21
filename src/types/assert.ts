@@ -99,6 +99,49 @@ export function assertNotNullish<T>(
 }
 
 /**
+ * Asserts that the given value is in the given array.
+ * If the call does not throw, the value is narrowed to the type of the array elements.
+ * @param value - The value to check.
+ * @param values - The constraint values.
+ * @example
+ * ```ts
+ * type Unit = "ppm" | "hz" | "pt" | "s";
+ * type Mode = "fid" | "ft";
+ * const fidUnits = ["pt", "s"] as const;
+ * const ftUnits = ["pt", "ppm", "hz"] as const;
+ *
+ * function setUnit(unit: Unit, mode: Mode) {
+ *   match(mode)
+ *     .with('fid', (mode) => {
+ *       assertIn(unit, fidUnits);
+ *       // unit is narrowed to "pt" | "s"
+ *       return dispatch({
+ *         type: 'SET_AXIS_UNIT_1D_HORIZONTAL',
+ *         payload: { nucleus, mode, unit },
+ *       });
+ *     })
+ *     .with('ft', (mode) => {
+ *       assertIn(unit, ftUnits);
+ *       // unit is narrowed to "pt" | "ppm" | "hz"
+ *       return dispatch({
+ *         type: 'SET_AXIS_UNIT_1D_HORIZONTAL',
+ *         payload: { nucleus, mode, unit },
+ *       });
+ *     })
+ *     .exhaustive();
+ * }
+ * ```
+ */
+export function assertIn<Value, InConstraint extends Value>(
+  value: Value,
+  values: readonly InConstraint[],
+): asserts value is InConstraint {
+  if (values.includes(value as InConstraint)) return;
+
+  throw new Error(`Value ${String(value)} is not in [${values.join(',')}]`);
+}
+
+/**
  * @param value
  * @deprecated Use `assertNotNullish` instead.
  */
