@@ -134,7 +134,7 @@ export function assertNotNullish<T>(
  */
 export function assertIn<Value, InConstraint extends Value>(
   value: Value,
-  values: InConstraint[],
+  values: readonly InConstraint[],
 ): asserts value is InConstraint {
   if (values.includes(value as InConstraint)) return;
 

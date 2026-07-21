@@ -206,8 +206,8 @@ describe('assertUnreachable', () => {
 });
 
 type Unit = 'ppm' | 'hz' | 'pt' | 's';
-const fidUnits = ['pt', 's'] as const satisfies Unit[];
-const ftUnits = ['pt', 'ppm', 'hz'] as const satisfies Unit[];
+const fidUnits = ['pt', 's'] as const;
+const ftUnits = ['pt', 'ppm', 'hz'] as const;
 
 function getFidUnit(unit: (typeof fidUnits)[number]): Unit {
   return unit;
