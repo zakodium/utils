@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/zakodium/utils/compare/v0.5.0...v0.5.1) (2026-07-31)
+
+
+### Bug Fixes
+
+* define top-level types field ([#18](https://github.com/zakodium/utils/issues/18)) ([914533f](https://github.com/zakodium/utils/commit/914533fb51fef9e4e7ce3e36db4baef4b78915b7))
+
 ## [0.5.0](https://github.com/zakodium/utils/compare/v0.4.1...v0.5.0) (2026-07-21)
 
 
