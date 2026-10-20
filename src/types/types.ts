@@ -86,3 +86,62 @@ export type PartialPick<T, K extends keyof T> = {
 } & {
   [Omit in Exclude<keyof T, K>]: T[Omit];
 };
+
+// Technical symbol for `OpaqueType`
+declare const opaqueRoot: unique symbol;
+
+/**
+ * A way to improve type-safety by ensuring values with generic types (like primitives)
+ * have a meaningfull type name related to business logic.
+ *
+ * To avoid type casting across a project,
+ * each declared OpaqueType should have a sibling method to cast `T` to the declared OpaqueType.
+ * `buildAsOpaque` is a typesafe helper to generate this casting method.
+ *
+ * Bonus point, It becomes easy to locate the boundaries between the outside and the inside of a domain
+ * by searching the usage of this method.
+ * @example
+ * ```ts
+ * export type NumberId = OpaqueType<number, 'NumberId'>;
+ * export const numberId = buildAsOpaque<NumberId>();
+ *
+ * export type MarkdownString = OpaqueType<string, 'MarkdownString'>;
+ * export const markdownString = buildAsOpaque<MarkdownString>();
+ *
+ * interface Post {
+ *  id: NumberId;
+ *  title: string;
+ *  body: MarkdownString;
+ * }
+ * declare function findPost(id: NumberId): Post | null;
+ *
+ * function handleAPICall(params: {postId: number}) {
+ *  const postId = numberId(params.postId);
+ *
+ *  return findPost(postId);
+ * }
+ * ```
+ */
+export type OpaqueType<T, K extends string> = T & {
+  readonly [opaqueRoot]: K;
+};
+
+type OpaqueTypeBase<Opaque extends OpaqueType<unknown, string>> =
+  Opaque extends OpaqueType<infer Base, string> ? Base : never;
+
+type OpaqueTypeCastGenerator<Opaque extends OpaqueType<unknown, string>> = (
+  value: OpaqueTypeBase<Opaque>,
+) => Opaque;
+
+/**
+ * @example
+ * ```ts
+ * export type NumberId = OpaqueType<number, 'NumberId'>;
+ * export const numberId = buildAsOpaque<NumberId>();
+ * ```
+ */
+export function buildAsOpaque<
+  Opaque extends OpaqueType<unknown, string>,
+>(): OpaqueTypeCastGenerator<Opaque> {
+  return (value) => value as Opaque;
+}
