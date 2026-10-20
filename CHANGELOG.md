@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/zakodium/utils/compare/v0.5.1...v0.6.0) (2026-10-20)
+
+
+### Features
+
+* add generic `OpaqueType` ([#20](https://github.com/zakodium/utils/issues/20)) ([0a9476f](https://github.com/zakodium/utils/commit/0a9476fad53e2cf91eaf114a3b2ef9caea4f5fc4))
+
 ## [0.5.1](https://github.com/zakodium/utils/compare/v0.5.0...v0.5.1) (2026-07-31)
 
 
