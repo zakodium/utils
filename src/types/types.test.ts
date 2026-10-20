@@ -32,3 +32,19 @@ test('ensure generated helper disallow values with wrong base type', () => {
   expectTypeOf(invalidTypedValue).toEqualTypeOf<NumberId>();
   expectTypeOf(invalidTypedValue).not.toEqualTypeOf<string>();
 });
+
+test('opaque compatible with base type', () => {
+  type NumberId = OpaqueType<number, 'NumberId'>;
+  const numberId = buildAsOpaque<NumberId>();
+
+  const opaqueValue = numberId(0);
+  const reOpaqueValue = numberId(opaqueValue);
+
+  expectTypeOf(opaqueValue).toEqualTypeOf<NumberId>();
+  expectTypeOf(reOpaqueValue).toEqualTypeOf<NumberId>();
+  expectTypeOf(opaqueValue).toBeNumber();
+  expectTypeOf(reOpaqueValue).toBeNumber();
+
+  expect(reOpaqueValue).toBe(opaqueValue);
+  expect(opaqueValue).toBe(0);
+});
