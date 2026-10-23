@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/zakodium/utils/compare/v0.6.0...v0.7.0) (2026-10-23)
+
+
+### Features
+
+* replace `buildAsOpaque` to `asOpaque` ([#22](https://github.com/zakodium/utils/issues/22)) ([1bd0692](https://github.com/zakodium/utils/commit/1bd0692ea3818976a2c68b7576deaa5338e7e0d6))
+
 ## [0.6.0](https://github.com/zakodium/utils/compare/v0.5.1...v0.6.0) (2026-10-20)
 
 
