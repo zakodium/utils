@@ -103,10 +103,10 @@ declare const opaqueRoot: unique symbol;
  * @example
  * ```ts
  * export type NumberId = OpaqueType<number, 'NumberId'>;
- * export const numberId = buildAsOpaque<NumberId>();
+ * export const numberId = asOpaque<NumberId, number>;
  *
  * export type MarkdownString = OpaqueType<string, 'MarkdownString'>;
- * export const markdownString = buildAsOpaque<MarkdownString>();
+ * export const markdownString = asOpaque<MarkdownString, string>;
  *
  * interface Post {
  *  id: NumberId;
@@ -126,22 +126,36 @@ export type OpaqueType<T, K extends string> = T & {
   readonly [opaqueRoot]: K;
 };
 
-type OpaqueTypeBase<Opaque extends OpaqueType<unknown, string>> =
-  Opaque extends OpaqueType<infer Base, string> ? Base : never;
-
-type OpaqueTypeCastGenerator<Opaque extends OpaqueType<unknown, string>> = (
-  value: OpaqueTypeBase<Opaque>,
-) => Opaque;
+// Maintainers note:
+// better helper based on `Opaque extends OpaqueType<infer Base, string>` as been tried.
+// It worked inside this package, but when used from a dependent package,
+// the helper created with `asOpaque<TheirOpaqueType>`
+// asked `value` to be type of `TheirOpaqueType` instead `TheirBaseType`.
+// `Omit<Opaque, typeof opaqueRoot>` is a workaround. It works inside this package,
+// and it works in dependent package.
 
 /**
+ * A method to alias with generics to provide the casting helper, from base type to opaque type.
+ * @param value
  * @example
  * ```ts
  * export type NumberId = OpaqueType<number, 'NumberId'>;
- * export const numberId = buildAsOpaque<NumberId>();
+ * export const numberId = asOpaque<NumberId, number>;
  * ```
  */
-export function buildAsOpaque<
+export function asOpaque<
+  /**
+   * The opaque type to return
+   */
   Opaque extends OpaqueType<unknown, string>,
->(): OpaqueTypeCastGenerator<Opaque> {
-  return (value) => value as Opaque;
+  /**
+   * Optional value type for better type annotation
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+  Value extends Omit<Opaque, typeof opaqueRoot> = Omit<
+    Opaque,
+    typeof opaqueRoot
+  >,
+>(value: Value) {
+  return value as unknown as Opaque;
 }
