@@ -2,11 +2,11 @@ import { expect, expectTypeOf, test } from 'vitest';
 
 // Ensure it is exported from the index
 import type { OpaqueType } from '../index.ts';
-import { buildAsOpaque } from '../index.ts';
+import { asOpaque } from '../index.ts';
 
 test('classic scenario', () => {
   type NumberId = OpaqueType<number, 'NumberId'>;
-  const numberId = buildAsOpaque<NumberId>();
+  const numberId = asOpaque<NumberId, number>;
 
   const value = 0;
   const valueAsOpaque = numberId(value);
@@ -21,7 +21,7 @@ test('classic scenario', () => {
 
 test('ensure generated helper disallow values with wrong base type', () => {
   type NumberId = OpaqueType<number, 'NumberId'>;
-  const numberId = buildAsOpaque<NumberId>();
+  const numberId = asOpaque<NumberId, number>;
 
   // @ts-expect-error Ensure generated helper generate a TypeScript compilation error when bind wrong type parameter
   const invalidTypedValue = numberId('invalid type value');
@@ -35,7 +35,7 @@ test('ensure generated helper disallow values with wrong base type', () => {
 
 test('opaque compatible with base type', () => {
   type NumberId = OpaqueType<number, 'NumberId'>;
-  const numberId = buildAsOpaque<NumberId>();
+  const numberId = asOpaque<NumberId, number>;
 
   const opaqueValue = numberId(0);
   const reOpaqueValue = numberId(opaqueValue);
